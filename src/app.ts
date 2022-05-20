@@ -14,10 +14,8 @@ app.use(morgan("dev"));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 //routes
-app.use(carRoutes)
-// app.get("/", (req: Request, res: Response): Response => {
-//   return res.send(`Api is at http://localhost:${app.get("port")}`);
-// });
+app.use(carRoutes);
 
 export default app;
