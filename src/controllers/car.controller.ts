@@ -28,11 +28,10 @@ export const createCar = (req: Request, res: Response) => {
       ...req.body,
     };
     cars.push(newCar);
-    res.json({
+    res.status(201).json({
       newCar,
       error: false,
       message: "Car created successfully",
-      status: 201,
     });
   }
 };
@@ -59,11 +58,10 @@ export const updateCar = (req: Request, res: Response) => {
       ...req.body,
     };
     cars[carIndex] = updatedCar;
-    res.json({
+    res.status(200).json({
       updatedCar,
       error: false,
       message: "Car updated successfully",
-      status: 200,
     });
   }
 };
