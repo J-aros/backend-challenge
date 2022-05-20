@@ -28,7 +28,12 @@ export const createCar = (req: Request, res: Response) => {
       ...req.body,
     };
     cars.push(newCar);
-    res.json(newCar);
+    res.json({
+      newCar,
+      error: false,
+      message: "Car created successfully",
+      status: 201,
+    });
   }
 };
 
@@ -54,7 +59,12 @@ export const updateCar = (req: Request, res: Response) => {
       ...req.body,
     };
     cars[carIndex] = updatedCar;
-    res.json(updatedCar);
+    res.json({
+      updatedCar,
+      error: false,
+      message: "Car updated successfully",
+      status: 200,
+    });
   }
 };
 
@@ -63,8 +73,9 @@ export const deleteCar = (req: Request, res: Response) => {
   if (!car) {
     res.status(404).send("The car with the given ID was not found.");
     return;
+  } else {
+    const index = cars.indexOf(car);
+    cars.splice(index, 1);
+    res.send({ car, message: "Car removed successfully", status: 200 });
   }
-  const index = cars.indexOf(car);
-  cars.splice(index, 1);
-  res.send(car);
 };
